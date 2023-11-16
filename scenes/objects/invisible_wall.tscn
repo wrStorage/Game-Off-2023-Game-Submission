@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3tpinwwp4wv"]
+
+[ext_resource type="Script" path="res://scripts/objectscripts/invisible_wall.gd" id="1_fxyba"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl1o4"]
+size = Vector2(100, 960)
+
+[node name="InvisibleWall" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_fxyba")
+
+[node name="InvisibleWallCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wl1o4")

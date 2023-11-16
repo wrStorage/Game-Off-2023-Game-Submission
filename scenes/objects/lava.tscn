@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://du01nott550c7"]
+
+[ext_resource type="Script" path="res://scripts/objectscripts/lava.gd" id="1_aptu5"]
+[ext_resource type="Texture2D" uid="uid://ckuxw7my7mtsy" path="res://assets/sprites/objects/spr_lava.png" id="2_8ctb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogep5"]
+size = Vector2(500, 640)
+
+[node name="Lava" type="Area2D" groups=["Obstacles"]]
+z_index = 1
+collision_mask = 23
+script = ExtResource("1_aptu5")
+
+[node name="LavaSprite" type="Sprite2D" parent="."]
+position = Vector2(-4.49998, 0)
+texture = ExtResource("2_8ctb3")
+
+[node name="LavaCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(-5.5, 0.5)
+shape = SubResource("RectangleShape2D_ogep5")
+
+[node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://jvtqcpe8mc2x"]
+
+[ext_resource type="Script" path="res://scripts/objectscripts/rock_spawner_path.gd" id="1_ch8fm"]
+[ext_resource type="PackedScene" uid="uid://iud28gsa6i8m" path="res://scenes/objects/rock.tscn" id="3_1gncb"]
+[ext_resource type="PackedScene" uid="uid://b2lse2pmno223" path="res://scenes/objects/rock_second.tscn" id="4_p0rmd"]
+[ext_resource type="PackedScene" uid="uid://bole38ss8h77j" path="res://scenes/objects/rock_third.tscn" id="5_cytt6"]
+[ext_resource type="PackedScene" uid="uid://cu76xv0wtgvd5" path="res://scenes/objects/boulder.tscn" id="5_hui53"]
+
+[sub_resource type="Curve2D" id="Curve2D_qt4nw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -220, 0, 0, 0, 0, 0, 92, -1, 0, 0, 0, 0, 225, -1)
+}
+point_count = 3
+
+[node name="RockSpawnerPath" type="Path2D" groups=["Obstacles"]]
+curve = SubResource("Curve2D_qt4nw")
+script = ExtResource("1_ch8fm")
+rock_scenes = Array[PackedScene]([ExtResource("3_1gncb"), ExtResource("4_p0rmd"), ExtResource("5_cytt6")])
+boulder_scenes = Array[PackedScene]([ExtResource("5_hui53")])
+
+[node name="RockSpawnerPathFollow" type="PathFollow2D" parent="."]
+position = Vector2(-220, 0)
+rotation = -0.00320512
+
+[node name="RockSpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="BoulderSpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="RockSpawnTimer" to="." method="_on_rock_spawn_timer_timeout"]
+[connection signal="timeout" from="BoulderSpawnTimer" to="." method="_on_boulder_spawn_timer_timeout"]

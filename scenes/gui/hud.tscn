@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn8vye74uq0e2"]
+
+[ext_resource type="Script" path="res://scripts/guiscripts/hud.gd" id="1_artkl"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_artkl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -70.0
+offset_right = -8.0
+offset_bottom = 26.0
+grow_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ScoreTextLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Score:"
+
+[node name="ScoreNumberLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

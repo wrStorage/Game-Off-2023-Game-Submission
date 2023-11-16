@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bole38ss8h77j"]
+
+[ext_resource type="PackedScene" uid="uid://iud28gsa6i8m" path="res://scenes/objects/rock.tscn" id="1_yl234"]
+[ext_resource type="Texture2D" uid="uid://djbj70ucs42ic" path="res://assets/sprites/objects/spr_rock3.png" id="2_m3vic"]
+
+[node name="Rock_Third" instance=ExtResource("1_yl234")]
+
+[node name="RockSprite" parent="." index="0"]
+texture = ExtResource("2_m3vic")

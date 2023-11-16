@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bggouwwn0hu6s"]
+
+[ext_resource type="Texture2D" uid="uid://bi7pa6y0f4732" path="res://assets/sprites/objects/spr_idol.png" id="1_7rtfg"]
+[ext_resource type="Script" path="res://scripts/objectscripts/idol.gd" id="1_pvpww"]
+[ext_resource type="Texture2D" uid="uid://crjx3sbx1yggd" path="res://assets/sprites/objects/spr_idol_glow.png" id="2_pxks7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xm1yg"]
+size = Vector2(28, 27)
+
+[node name="Idol" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_pvpww")
+
+[node name="GlowSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_pxks7")
+
+[node name="IdolSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_7rtfg")
+
+[node name="IdolCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xm1yg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

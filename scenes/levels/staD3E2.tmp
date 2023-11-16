@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://nvn78mtj6iup"]
+
+[ext_resource type="PackedScene" uid="uid://dox4ifyfxt4bk" path="res://scenes/objects/player.tscn" id="1_6wqyb"]
+[ext_resource type="Script" path="res://scripts/levelscripts/stage_one.gd" id="1_swgrx"]
+[ext_resource type="PackedScene" uid="uid://jvtqcpe8mc2x" path="res://scenes/objects/rock_spawner_path.tscn" id="2_oh5n1"]
+[ext_resource type="PackedScene" uid="uid://dfegfx2byl700" path="res://scenes/objects/starting_platform.tscn" id="3_5d5kw"]
+[ext_resource type="PackedScene" uid="uid://du01nott550c7" path="res://scenes/objects/lava.tscn" id="5_4u7sq"]
+
+[node name="StageOne" type="Node2D"]
+script = ExtResource("1_swgrx")
+
+[node name="RockSpawnerPath" parent="." instance=ExtResource("2_oh5n1")]
+position = Vector2(0, -500)
+
+[node name="Player" parent="." instance=ExtResource("1_6wqyb")]
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+offset = Vector2(240, 0)
+limit_left = -1
+limit_right = 1
+
+[node name="StartingPlatform" parent="." instance=ExtResource("3_5d5kw")]
+position = Vector2(0, 85)
+
+[node name="Lava" parent="." instance=ExtResource("5_4u7sq")]
+position = Vector2(-4, 220)

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu76xv0wtgvd5"]
+
+[ext_resource type="Texture2D" uid="uid://cq5w341weq35o" path="res://assets/sprites/objects/spr_boulder1.png" id="1_143bd"]
+[ext_resource type="Script" path="res://scripts/objectscripts/boulder.gd" id="1_s8hpa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bs5jw"]
+radius = 30.0
+
+[node name="Boulder" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 25
+mass = 5.0
+gravity_scale = 0.5
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_s8hpa")
+
+[node name="BoulderSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_143bd")
+
+[node name="BoulderCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bs5jw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

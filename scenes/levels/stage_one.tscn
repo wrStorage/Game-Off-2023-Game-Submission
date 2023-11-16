@@ -1,0 +1,70 @@
+[gd_scene load_steps=15 format=3 uid="uid://bls854cswedxh"]
+
+[ext_resource type="PackedScene" uid="uid://dox4ifyfxt4bk" path="res://scenes/objects/player.tscn" id="1_6wqyb"]
+[ext_resource type="Script" path="res://scripts/levelscripts/stage_one.gd" id="1_swgrx"]
+[ext_resource type="PackedScene" uid="uid://jvtqcpe8mc2x" path="res://scenes/objects/rock_spawner_path.tscn" id="2_oh5n1"]
+[ext_resource type="PackedScene" uid="uid://bpqpl3doohbro" path="res://scenes/objects/platform.tscn" id="2_xlfe3"]
+[ext_resource type="PackedScene" uid="uid://dfegfx2byl700" path="res://scenes/objects/starting_platform.tscn" id="3_5d5kw"]
+[ext_resource type="PackedScene" uid="uid://du01nott550c7" path="res://scenes/objects/lava.tscn" id="5_4u7sq"]
+[ext_resource type="PackedScene" uid="uid://cvyqrm6y1ujxv" path="res://scenes/objects/platform_32.tscn" id="5_26223"]
+[ext_resource type="PackedScene" uid="uid://deqgi8fbntb7" path="res://scenes/objects/platform_96_2.tscn" id="5_aqew2"]
+[ext_resource type="PackedScene" uid="uid://bn8vye74uq0e2" path="res://scenes/gui/hud.tscn" id="6_beuet"]
+[ext_resource type="PackedScene" uid="uid://c3tpinwwp4wv" path="res://scenes/objects/invisible_wall.tscn" id="7_bir2g"]
+[ext_resource type="Texture2D" uid="uid://21nj64c1j7x" path="res://assets/sprites/background/bg.png" id="11_gf6n1"]
+[ext_resource type="Texture2D" uid="uid://drp15cm6iut31" path="res://assets/sprites/background/spr_edge_left.png" id="12_r41n6"]
+[ext_resource type="Texture2D" uid="uid://miyl3scjq70q" path="res://assets/sprites/background/spr_edge_right.png" id="13_2dotl"]
+[ext_resource type="PackedScene" uid="uid://ctm0e25fnf4fx" path="res://scenes/objects/platform_64.tscn" id="13_rnkvk"]
+
+[node name="StageOne" type="Node2D"]
+script = ExtResource("1_swgrx")
+platforms = Array[PackedScene]([ExtResource("2_xlfe3"), ExtResource("5_26223"), ExtResource("13_rnkvk"), ExtResource("5_aqew2")])
+
+[node name="RockSpawnerPath" parent="." instance=ExtResource("2_oh5n1")]
+position = Vector2(0, -500)
+
+[node name="Player" parent="." instance=ExtResource("1_6wqyb")]
+position = Vector2(0, -35)
+
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
+offset = Vector2(240, -100)
+limit_left = -1
+limit_right = 1
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
+
+[node name="StartingPlatform" parent="." instance=ExtResource("3_5d5kw")]
+position = Vector2(-10, 35)
+
+[node name="Lava" parent="." instance=ExtResource("5_4u7sq")]
+position = Vector2(0, 400)
+
+[node name="HUD" parent="." instance=ExtResource("6_beuet")]
+
+[node name="LeftInvisibleWall" parent="." instance=ExtResource("7_bir2g")]
+position = Vector2(-295, 0)
+
+[node name="RightInvisibleWall" parent="." instance=ExtResource("7_bir2g")]
+position = Vector2(295, 0)
+
+[node name="ParallaxController" type="ParallaxBackground" parent="."]
+
+[node name="BackgroundParallax" type="ParallaxLayer" parent="ParallaxController"]
+motion_mirroring = Vector2(0, 640)
+
+[node name="BackgroundSprite" type="Sprite2D" parent="ParallaxController/BackgroundParallax"]
+position = Vector2(0, 320)
+texture = ExtResource("11_gf6n1")
+
+[node name="LeftEdgeParallax" type="ParallaxLayer" parent="ParallaxController"]
+motion_mirroring = Vector2(0, 640)
+
+[node name="LeftEdgeSprite" type="Sprite2D" parent="ParallaxController/LeftEdgeParallax"]
+position = Vector2(-230, 320)
+texture = ExtResource("12_r41n6")
+
+[node name="RightEdgeParallax" type="ParallaxLayer" parent="ParallaxController"]
+motion_mirroring = Vector2(0, 640)
+
+[node name="RightEdgeSprite" type="Sprite2D" parent="ParallaxController/RightEdgeParallax"]
+position = Vector2(230, 320)
+texture = ExtResource("13_2dotl")

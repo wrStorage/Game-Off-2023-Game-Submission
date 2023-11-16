@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfegfx2byl700"]
+
+[ext_resource type="Texture2D" uid="uid://bi6k73cjtb7ch" path="res://assets/sprites/objects/spr_floor_start.png" id="1_qjuc0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cw4jg"]
+size = Vector2(485, 145)
+
+[node name="StartingPlatform" type="StaticBody2D"]
+collision_layer = 17
+
+[node name="StartPlatformSprite" type="Sprite2D" parent="."]
+position = Vector2(10.5, 0)
+texture = ExtResource("1_qjuc0")
+
+[node name="StartPlatformCollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(9, 0)
+shape = SubResource("RectangleShape2D_cw4jg")
