@@ -9,4 +9,7 @@ script = ExtResource("1_rbvkt")
 wait_time = 30.0
 autostart = true
 
+[node name="ScoreTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="DifficultyTimer" to="." method="_on_difficulty_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

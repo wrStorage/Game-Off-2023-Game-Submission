@@ -8,6 +8,7 @@ var gravity_limit: int = 500
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var fall_buffer: bool = false
 var buffered_jump: bool = false
+var squished: bool = false
 @export var stun_speed: int = 100
 @export var stun_jump_speed: int = -400
 @onready var stun_timer = $StunTimer
@@ -18,8 +19,10 @@ var buffered_jump: bool = false
 @onready var animation_player = $PlayerAnimationPlayer
 
 func _physics_process(delta) -> void:
-	if impacting_ray.is_colliding() and is_on_floor():
-		get_tree().reload_current_scene()
+	if impacting_ray.is_colliding() and is_on_floor() and !squished:
+		squished = true
+		DeathScreen.show()
+		get_tree().paused = true
 		
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if is_on_floor() and direction == 0:

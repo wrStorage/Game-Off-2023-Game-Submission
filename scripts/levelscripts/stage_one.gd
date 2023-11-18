@@ -3,6 +3,8 @@ extends Node2D
 @export var platforms: Array[PackedScene] = []
 @onready var idol: PackedScene = preload("res://scenes/objects/idol.tscn")
 @onready var rock_spawner = $RockSpawnerPath
+@onready var player = $Player
+@onready var pause_menu = $PauseMenu
 var screen_height: int = 640
 var rng = RandomNumberGenerator.new()
 var vertical_offset: int = 126
@@ -14,15 +16,20 @@ var platform_generate_height: int = -640
 var prev_choice: int = 0
 var added_idol: bool = false
 
+func _input(event):
+	if event.is_action_pressed("pause"):
+		pause_menu.show()
+		get_tree().paused = true
+
 func _ready() -> void:
 	generate_platforms()
 
 func _process(_delta) -> void:
-	if $Player.global_position.y <= platform_generate_height:
+	if player.global_position.y <= platform_generate_height:
 		generate_platforms()
 		platform_generate_height -= 640
 		
-	rock_spawner.global_position.y = $Player.global_position.y - screen_height
+	rock_spawner.global_position.y = player.global_position.y - screen_height
 
 func add_platform(platform_position, row) -> void:
 	var new_platform = platforms[rng.randi_range(0, platforms.size() - 1)].instantiate()

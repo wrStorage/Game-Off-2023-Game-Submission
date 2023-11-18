@@ -14,7 +14,8 @@ func _on_body_entered(body) -> void:
 	if body.collision_layer == 1:
 		body.get_node("DespawnTimer").start()
 	elif body.collision_layer == 4:
-		get_tree().reload_current_scene()
+		DeathScreen.show()
+		get_tree().paused = true
 	elif body.collision_layer == 16:
 		body.queue_free()
 

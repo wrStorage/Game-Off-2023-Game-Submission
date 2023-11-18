@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bls854cswedxh"]
+[gd_scene load_steps=16 format=3 uid="uid://bls854cswedxh"]
 
 [ext_resource type="PackedScene" uid="uid://dox4ifyfxt4bk" path="res://scenes/objects/player.tscn" id="1_6wqyb"]
 [ext_resource type="Script" path="res://scripts/levelscripts/stage_one.gd" id="1_swgrx"]
@@ -14,10 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://drp15cm6iut31" path="res://assets/sprites/background/spr_edge_left.png" id="12_r41n6"]
 [ext_resource type="Texture2D" uid="uid://miyl3scjq70q" path="res://assets/sprites/background/spr_edge_right.png" id="13_2dotl"]
 [ext_resource type="PackedScene" uid="uid://ctm0e25fnf4fx" path="res://scenes/objects/platform_64.tscn" id="13_rnkvk"]
+[ext_resource type="PackedScene" uid="uid://caidgm4d88qyr" path="res://scenes/gui/pause_menu.tscn" id="15_36v8r"]
 
 [node name="StageOne" type="Node2D"]
 script = ExtResource("1_swgrx")
 platforms = Array[PackedScene]([ExtResource("2_xlfe3"), ExtResource("5_26223"), ExtResource("13_rnkvk"), ExtResource("5_aqew2")])
+metadata/_edit_vertical_guides_ = []
 
 [node name="RockSpawnerPath" parent="." instance=ExtResource("2_oh5n1")]
 position = Vector2(0, -500)
@@ -38,33 +40,39 @@ position = Vector2(-10, 35)
 [node name="Lava" parent="." instance=ExtResource("5_4u7sq")]
 position = Vector2(0, 400)
 
-[node name="HUD" parent="." instance=ExtResource("6_beuet")]
-
 [node name="LeftInvisibleWall" parent="." instance=ExtResource("7_bir2g")]
 position = Vector2(-295, 0)
 
 [node name="RightInvisibleWall" parent="." instance=ExtResource("7_bir2g")]
 position = Vector2(295, 0)
 
-[node name="ParallaxController" type="ParallaxBackground" parent="."]
+[node name="PauseMenu" parent="." instance=ExtResource("15_36v8r")]
 
-[node name="BackgroundParallax" type="ParallaxLayer" parent="ParallaxController"]
+[node name="HUD" parent="." instance=ExtResource("6_beuet")]
+layer = 3
+
+[node name="BackgroundParallax" type="ParallaxBackground" parent="."]
+
+[node name="BackgroundParallax" type="ParallaxLayer" parent="BackgroundParallax"]
 motion_mirroring = Vector2(0, 640)
 
-[node name="BackgroundSprite" type="Sprite2D" parent="ParallaxController/BackgroundParallax"]
+[node name="BackgroundSprite" type="Sprite2D" parent="BackgroundParallax/BackgroundParallax"]
 position = Vector2(0, 320)
 texture = ExtResource("11_gf6n1")
 
-[node name="LeftEdgeParallax" type="ParallaxLayer" parent="ParallaxController"]
+[node name="ForegroundParallax" type="ParallaxBackground" parent="."]
+layer = 0
+
+[node name="LeftEdgeParallax" type="ParallaxLayer" parent="ForegroundParallax"]
 motion_mirroring = Vector2(0, 640)
 
-[node name="LeftEdgeSprite" type="Sprite2D" parent="ParallaxController/LeftEdgeParallax"]
-position = Vector2(-230, 320)
+[node name="LeftEdgeSprite" type="Sprite2D" parent="ForegroundParallax/LeftEdgeParallax"]
+position = Vector2(-234, 320)
 texture = ExtResource("12_r41n6")
 
-[node name="RightEdgeParallax" type="ParallaxLayer" parent="ParallaxController"]
+[node name="RightEdgeParallax" type="ParallaxLayer" parent="ForegroundParallax"]
 motion_mirroring = Vector2(0, 640)
 
-[node name="RightEdgeSprite" type="Sprite2D" parent="ParallaxController/RightEdgeParallax"]
-position = Vector2(230, 320)
+[node name="RightEdgeSprite" type="Sprite2D" parent="ForegroundParallax/RightEdgeParallax"]
+position = Vector2(234, 320)
 texture = ExtResource("13_2dotl")

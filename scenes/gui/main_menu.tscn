@@ -1,0 +1,106 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkeq26h0kehkm"]
+
+[ext_resource type="Script" path="res://scripts/guiscripts/main_menu.gd" id="1_k1r4g"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k1r4g")
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScorePanel" type="Panel" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HighScoreLabel" type="Label" parent="MainPanel/ScorePanel"]
+layout_mode = 0
+offset_right = 91.0
+offset_bottom = 26.0
+text = "High Score: 0"
+
+[node name="PreviousScoreLabel" type="Label" parent="MainPanel/ScorePanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_bottom = 26.0
+grow_horizontal = 0
+text = "Last Run Score: 0"
+
+[node name="Title" type="Label" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.5
+offset_top = 100.0
+offset_right = 76.5
+offset_bottom = 152.0
+grow_horizontal = 2
+text = "Henry Hotfoot in...
+Whole Lava Trouble"
+
+[node name="MarginButtonContainer" type="MarginContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -68.0
+offset_right = -80.0
+offset_bottom = 68.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VerticalButtonContainer" type="VBoxContainer" parent="MainPanel/MarginButtonContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MainPanel/MarginButtonContainer/VerticalButtonContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="VolumeButton" type="Button" parent="MainPanel/MarginButtonContainer/VerticalButtonContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="InstructionsButton" type="Button" parent="MainPanel/MarginButtonContainer/VerticalButtonContainer"]
+layout_mode = 2
+text = "How to Play"
+
+[node name="CreditsButton" type="Button" parent="MainPanel/MarginButtonContainer/VerticalButtonContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="JamMarginContainer" type="MarginContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -60.0
+offset_right = 135.0
+offset_bottom = -20.0
+grow_vertical = 0
+
+[node name="JamLabel" type="Label" parent="MainPanel/JamMarginContainer"]
+layout_mode = 2
+text = "Game Off 2023
+"
+
+[connection signal="pressed" from="MainPanel/MarginButtonContainer/VerticalButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
