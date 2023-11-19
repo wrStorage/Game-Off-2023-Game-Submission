@@ -38,7 +38,7 @@ position_smoothing_speed = 15.0
 position = Vector2(-10, 35)
 
 [node name="Lava" parent="." instance=ExtResource("5_4u7sq")]
-position = Vector2(0, 400)
+position = Vector2(8, 401)
 
 [node name="LeftInvisibleWall" parent="." instance=ExtResource("7_bir2g")]
 position = Vector2(-295, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cna1ypq5ofv28"
-path="res://.godot/imported/spr_pc_43x53.png-c4fcce8889fc938e1939a5a0dd31cbb4.ctex"
+uid="uid://b1f3b3sq3iqa8"
+path="res://.godot/imported/ovr_lava_radiance.png-7329d47e28550b64aa43ce531e840cf8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/spr_pc_43x53.png"
-dest_files=["res://.godot/imported/spr_pc_43x53.png-c4fcce8889fc938e1939a5a0dd31cbb4.ctex"]
+source_file="res://assets/sprites/background/ovr_lava_radiance.png"
+dest_files=["res://.godot/imported/ovr_lava_radiance.png-7329d47e28550b64aa43ce531e840cf8.ctex"]
 
 [params]
 

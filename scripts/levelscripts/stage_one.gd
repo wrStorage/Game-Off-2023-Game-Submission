@@ -33,6 +33,9 @@ func _process(_delta) -> void:
 
 func add_platform(platform_position, row) -> void:
 	var new_platform = platforms[rng.randi_range(0, platforms.size() - 1)].instantiate()
+	var flip = rng.randi_range(0,1)
+	if flip:
+		new_platform.scale.x *= -flip
 	new_platform.global_position = platform_position
 	new_platform.platform_row = row
 	add_idol(new_platform, row)

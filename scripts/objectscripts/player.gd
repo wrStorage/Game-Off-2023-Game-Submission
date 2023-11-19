@@ -15,8 +15,10 @@ var squished: bool = false
 @onready var upgrade_timer = $UpgradeTimer
 @onready var fall_buffer_timer = $FallBufferTimer
 @onready var buffered_jump_timer = $BufferedJumpTimer
-@onready var impacting_ray = $ImpactingObjectRay
+@onready var impacting_ray = $PlayerCollisionShape/ImpactingObjectRay
 @onready var animation_player = $PlayerAnimationPlayer
+@onready var sprite = $PlayerCollisionShape
+@onready var audio_player = $PlayerAudioStream
 
 func _physics_process(delta) -> void:
 	if impacting_ray.is_colliding() and is_on_floor() and !squished:
@@ -37,6 +39,8 @@ func _physics_process(delta) -> void:
 	if is_on_floor() or fall_buffer:
 		if Input.is_action_just_pressed("ui_up") or buffered_jump:
 			velocity.y = jump_speed
+			audio_player.play()
+			animation_player.play("jump")
 			fall_buffer = false
 			buffered_jump = false
 		
@@ -48,6 +52,9 @@ func _physics_process(delta) -> void:
 		velocity.y = 0
 	
 	velocity.x = direction * speed
+	
+	if direction != 0:
+		sprite.scale.x = direction
 		
 	var wasOnFloor = is_on_floor()
 	move_and_slide()
@@ -80,6 +87,6 @@ func _on_fall_buffer_timer_timeout() -> void:
 func _on_buffered_jump_timer_timeout() -> void:
 	buffered_jump = false
 
-func _on_upgrade_timer_timeout():
+func _on_upgrade_timer_timeout() -> void:
 	jump_speed = normal_jump_speed
 	upgrade_timer.stop()

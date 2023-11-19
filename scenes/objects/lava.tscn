@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://du01nott550c7"]
+[gd_scene load_steps=5 format=3 uid="uid://du01nott550c7"]
 
 [ext_resource type="Script" path="res://scripts/objectscripts/lava.gd" id="1_aptu5"]
 [ext_resource type="Texture2D" uid="uid://ckuxw7my7mtsy" path="res://assets/sprites/objects/spr_lava.png" id="2_8ctb3"]
+[ext_resource type="Texture2D" uid="uid://b1f3b3sq3iqa8" path="res://assets/sprites/background/ovr_lava_radiance.png" id="3_14g06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogep5"]
 size = Vector2(500, 640)
@@ -22,6 +23,16 @@ shape = SubResource("RectangleShape2D_ogep5")
 [node name="SpeedTimer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="LavaLight" type="PointLight2D" parent="."]
+position = Vector2(-7, -839)
+scale = Vector2(1.04167, 5.58)
+energy = 2.0
+blend_mode = 2
+range_layer_min = -100
+range_layer_max = 1
+texture = ExtResource("3_14g06")
+height = 500.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]

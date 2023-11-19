@@ -19,10 +19,10 @@ func _on_body_entered(body) -> void:
 	if body.collision_layer == 1:
 		if global_position.x >= body.global_position.x:
 			horizontal_speed = horizontal_bounce
-			rotation_amount = 30
+			rotation_amount = 35
 		else:
 			horizontal_speed = -horizontal_bounce
-			rotation_amount = -30
+			rotation_amount = -35
 		vertical_speed = vertical_bounce
 		bounce_timer.start()
 		collision_mask = 12
