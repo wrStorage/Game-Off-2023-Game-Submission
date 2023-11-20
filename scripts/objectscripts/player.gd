@@ -9,15 +9,20 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var fall_buffer: bool = false
 var buffered_jump: bool = false
 var squished: bool = false
+var in_knockback: bool = false
+var horizontal_knockback_strength: float = -200
+var vertical_knockback_strength: float = -100
 @export var stun_speed: int = 100
 @export var stun_jump_speed: int = -400
 @onready var stun_timer = $StunTimer
 @onready var upgrade_timer = $UpgradeTimer
 @onready var fall_buffer_timer = $FallBufferTimer
 @onready var buffered_jump_timer = $BufferedJumpTimer
+@onready var knockback_timer = $Knockback_Timer
 @onready var impacting_ray = $PlayerCollisionShape/ImpactingObjectRay
 @onready var animation_player = $PlayerAnimationPlayer
 @onready var sprite = $PlayerCollisionShape
+@onready var stun_sprite = $PlayerCollisionShape/PlayerSprite/StunSprite
 @onready var audio_player = $PlayerAudioStream
 
 func _physics_process(delta) -> void:
@@ -57,20 +62,27 @@ func _physics_process(delta) -> void:
 		sprite.scale.x = direction
 		
 	var wasOnFloor = is_on_floor()
+	
+	if in_knockback:
+		velocity.y = vertical_knockback_strength
+		velocity.x = horizontal_knockback_strength * sprite.scale.x
 	move_and_slide()
-			
+	
 	if wasOnFloor and !is_on_floor() and velocity.y >= 0:
 		fall_buffer = true
 		fall_buffer_timer.start()
 	
 func apply_gravity(delta) -> void:
-	if velocity.y < gravity_limit:
+	if position.y < gravity_limit:
 		velocity.y += gravity * delta
 	
 func apply_stun() -> void:
+	in_knockback = true
 	jump_speed = stun_jump_speed
 	speed = stun_speed
 	stun_timer.start()
+	knockback_timer.start()
+	stun_sprite.visible = true
 	
 func apply_upgrade() -> void:
 	jump_speed = upgrade_jump_speed
@@ -80,6 +92,7 @@ func _on_stun_timer_timeout() -> void:
 	jump_speed = normal_jump_speed
 	speed = 250
 	stun_timer.stop()
+	stun_sprite.visible = false
 
 func _on_fall_buffer_timer_timeout() -> void:
 	fall_buffer = false
@@ -90,3 +103,7 @@ func _on_buffered_jump_timer_timeout() -> void:
 func _on_upgrade_timer_timeout() -> void:
 	jump_speed = normal_jump_speed
 	upgrade_timer.stop()
+
+func _on_knockback_timer_timeout():
+	in_knockback = false
+	knockback_timer.stop()

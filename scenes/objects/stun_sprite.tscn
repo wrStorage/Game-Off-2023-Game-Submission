@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://b33pfavckxva6"]
+
+[ext_resource type="Texture2D" uid="uid://pdkdj2tqda2y" path="res://assets/sprites/player/spr_stun_15x12.png" id="1_rj7yl"]
+[ext_resource type="Script" path="res://scripts/objectscripts/stun_sprite.gd" id="2_do1qj"]
+
+[sub_resource type="Animation" id="Animation_cyh3p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_1r66e"]
+resource_name = "stun"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7jj3a"]
+_data = {
+"RESET": SubResource("Animation_cyh3p"),
+"stun": SubResource("Animation_1r66e")
+}
+
+[node name="StunSprite" type="Sprite2D"]
+visible = false
+texture = ExtResource("1_rj7yl")
+hframes = 3
+script = ExtResource("2_do1qj")
+
+[node name="StunAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7jj3a")
+}
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

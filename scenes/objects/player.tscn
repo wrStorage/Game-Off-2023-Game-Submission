@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dox4ifyfxt4bk"]
+[gd_scene load_steps=10 format=3 uid="uid://dox4ifyfxt4bk"]
 
 [ext_resource type="Script" path="res://scripts/objectscripts/player.gd" id="1_67d6m"]
 [ext_resource type="Texture2D" uid="uid://cna1ypq5ofv28" path="res://assets/sprites/player/spr_pc_43x53.png" id="2_xsti4"]
 [ext_resource type="AudioStream" uid="uid://54kbtt1rqpqu" path="res://assets/sfx/jump.wav" id="3_0y41r"]
+[ext_resource type="PackedScene" uid="uid://b33pfavckxva6" path="res://scenes/objects/stun_sprite.tscn" id="3_t1bhb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30cy6"]
 size = Vector2(18, 35)
@@ -77,6 +78,9 @@ texture = ExtResource("2_xsti4")
 hframes = 4
 vframes = 2
 
+[node name="StunSprite" parent="PlayerCollisionShape/PlayerSprite" instance=ExtResource("3_t1bhb")]
+position = Vector2(-5, -35)
+
 [node name="ImpactingObjectRay" type="RayCast2D" parent="PlayerCollisionShape"]
 position = Vector2(-2, 4)
 rotation = 3.14159
@@ -94,6 +98,9 @@ wait_time = 0.1
 [node name="UpgradeTimer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="Knockback_Timer" type="Timer" parent="."]
+wait_time = 0.1
+
 [node name="PlayerAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_vfjpm")
@@ -106,3 +113,4 @@ stream = ExtResource("3_0y41r")
 [connection signal="timeout" from="FallBufferTimer" to="." method="_on_fall_buffer_timer_timeout"]
 [connection signal="timeout" from="BufferedJumpTimer" to="." method="_on_buffered_jump_timer_timeout"]
 [connection signal="timeout" from="UpgradeTimer" to="." method="_on_upgrade_timer_timeout"]
+[connection signal="timeout" from="Knockback_Timer" to="." method="_on_knockback_timer_timeout"]
