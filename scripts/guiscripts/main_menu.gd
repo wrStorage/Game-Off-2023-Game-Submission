@@ -1,9 +1,9 @@
 extends Control
 
 const level_scene = preload("res://scenes/levels/stage_one.tscn")
-@onready var high_score_label = $MainPanel/ScorePanel/HighScoreLabel
-@onready var previous_score_label = $MainPanel/ScorePanel/PreviousScoreLabel
-@onready var start_button = $MainPanel/MarginButtonContainer/VerticalButtonContainer/StartButton
+@onready var high_score_label = $ScorePanel/HighScoreLabel
+@onready var previous_score_label = $ScorePanel/PreviousScoreLabel
+@onready var start_button = $VerticalButtonContainer/StartButton
 
 func _ready() -> void:
 	start_button.grab_focus()

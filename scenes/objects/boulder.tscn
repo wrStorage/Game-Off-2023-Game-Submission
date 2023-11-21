@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cu76xv0wtgvd5"]
+[gd_scene load_steps=5 format=3 uid="uid://cu76xv0wtgvd5"]
 
 [ext_resource type="Texture2D" uid="uid://cq5w341weq35o" path="res://assets/sprites/objects/spr_boulder1.png" id="1_143bd"]
 [ext_resource type="Script" path="res://scripts/objectscripts/boulder.gd" id="1_s8hpa"]
+[ext_resource type="AudioStream" uid="uid://dsf8hyv27kvkm" path="res://assets/sfx/boulder.wav" id="3_a70u7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bs5jw"]
 radius = 30.0
@@ -21,4 +22,12 @@ texture = ExtResource("1_143bd")
 [node name="BoulderCollisionShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bs5jw")
 
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="BoulderAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_a70u7")
+max_distance = 650.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/objectscripts/lava.gd" id="1_aptu5"]
 [ext_resource type="Texture2D" uid="uid://ckuxw7my7mtsy" path="res://assets/sprites/objects/spr_lava.png" id="2_8ctb3"]
-[ext_resource type="Texture2D" uid="uid://b1f3b3sq3iqa8" path="res://assets/sprites/background/ovr_lava_radiance.png" id="3_14g06"]
+[ext_resource type="Texture2D" uid="uid://bo3yix0u843mx" path="res://assets/sprites/background/ovr_lava_radiance.png" id="3_14g06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogep5"]
 size = Vector2(500, 640)

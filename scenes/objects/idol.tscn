@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bggouwwn0hu6s"]
 
-[ext_resource type="Texture2D" uid="uid://bi7pa6y0f4732" path="res://assets/sprites/objects/spr_idol.png" id="1_7rtfg"]
+[ext_resource type="Texture2D" uid="uid://cgpri2y3thy7b" path="res://assets/sprites/objects/spr_idol.png" id="1_7rtfg"]
 [ext_resource type="Script" path="res://scripts/objectscripts/idol.gd" id="1_pvpww"]
 [ext_resource type="Texture2D" uid="uid://crjx3sbx1yggd" path="res://assets/sprites/objects/spr_idol_glow.png" id="2_pxks7"]
 

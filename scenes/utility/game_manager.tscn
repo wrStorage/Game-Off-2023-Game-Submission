@@ -7,7 +7,6 @@ script = ExtResource("1_rbvkt")
 
 [node name="DifficultyTimer" type="Timer" parent="."]
 wait_time = 30.0
-autostart = true
 
 [node name="ScoreTimer" type="Timer" parent="."]
 

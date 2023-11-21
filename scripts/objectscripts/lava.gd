@@ -8,7 +8,10 @@ var lava_time_limit = 1
 func _physics_process(delta) -> void:
 	position.y -= speed * delta
 	for rocks in get_overlapping_areas():
-		rocks.queue_free()
+		if rocks.overlapped == false:
+			rocks.overlapped = true
+			rocks.start_despawner()
+		rocks.reset_speed()
 
 func _on_body_entered(body) -> void:
 	if body.collision_layer == 1:
@@ -17,7 +20,8 @@ func _on_body_entered(body) -> void:
 		DeathScreen.show()
 		get_tree().paused = true
 	elif body.collision_layer == 16:
-		body.queue_free()
+		body.set_movement_to_zero()
+		body.despawn_timer.start()
 
 func _on_speed_timer_timeout() -> void:
 	if speed != max_speed:

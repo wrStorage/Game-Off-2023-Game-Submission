@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://d0ne37bi67773"
-path="res://.godot/imported/rock.wav-a7e0f0bc8ef1d8a37a1fd8a5ba13bd9c.sample"
+uid="uid://c2wdth84kv7i6"
+path="res://.godot/imported/hiscore.wav-50011119c0b6724dd0c18de3dc962ae6.sample"
 
 [deps]
 
-source_file="res://assets/sfx/rock.wav"
-dest_files=["res://.godot/imported/rock.wav-a7e0f0bc8ef1d8a37a1fd8a5ba13bd9c.sample"]
+source_file="res://assets/sfx/hiscore.wav"
+dest_files=["res://.godot/imported/hiscore.wav-50011119c0b6724dd0c18de3dc962ae6.sample"]
 
 [params]
 

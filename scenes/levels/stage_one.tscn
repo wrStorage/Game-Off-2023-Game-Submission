@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bls854cswedxh"]
+[gd_scene load_steps=17 format=3 uid="uid://bls854cswedxh"]
 
 [ext_resource type="PackedScene" uid="uid://dox4ifyfxt4bk" path="res://scenes/objects/player.tscn" id="1_6wqyb"]
 [ext_resource type="Script" path="res://scripts/levelscripts/stage_one.gd" id="1_swgrx"]
@@ -10,15 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://deqgi8fbntb7" path="res://scenes/objects/platform_96_2.tscn" id="5_aqew2"]
 [ext_resource type="PackedScene" uid="uid://bn8vye74uq0e2" path="res://scenes/gui/hud.tscn" id="6_beuet"]
 [ext_resource type="PackedScene" uid="uid://c3tpinwwp4wv" path="res://scenes/objects/invisible_wall.tscn" id="7_bir2g"]
-[ext_resource type="Texture2D" uid="uid://21nj64c1j7x" path="res://assets/sprites/background/bg.png" id="11_gf6n1"]
-[ext_resource type="Texture2D" uid="uid://drp15cm6iut31" path="res://assets/sprites/background/spr_edge_left.png" id="12_r41n6"]
-[ext_resource type="Texture2D" uid="uid://miyl3scjq70q" path="res://assets/sprites/background/spr_edge_right.png" id="13_2dotl"]
+[ext_resource type="Script" path="res://scripts/utilityscripts/player_camera.gd" id="8_8ra66"]
+[ext_resource type="Texture2D" uid="uid://civsplk4rwgf5" path="res://assets/sprites/background/bg.png" id="11_gf6n1"]
+[ext_resource type="Texture2D" uid="uid://dsgidtq2scoil" path="res://assets/sprites/background/spr_edge_left.png" id="12_r41n6"]
+[ext_resource type="Texture2D" uid="uid://1tpqarovdlj4" path="res://assets/sprites/background/spr_edge_right.png" id="13_2dotl"]
 [ext_resource type="PackedScene" uid="uid://ctm0e25fnf4fx" path="res://scenes/objects/platform_64.tscn" id="13_rnkvk"]
 [ext_resource type="PackedScene" uid="uid://caidgm4d88qyr" path="res://scenes/gui/pause_menu.tscn" id="15_36v8r"]
 
 [node name="StageOne" type="Node2D"]
 script = ExtResource("1_swgrx")
-platforms = Array[PackedScene]([ExtResource("2_xlfe3"), ExtResource("5_26223"), ExtResource("13_rnkvk"), ExtResource("5_aqew2")])
+platforms = Array[PackedScene]([ExtResource("2_xlfe3"), ExtResource("5_aqew2"), ExtResource("13_rnkvk"), ExtResource("5_26223")])
 metadata/_edit_vertical_guides_ = []
 
 [node name="RockSpawnerPath" parent="." instance=ExtResource("2_oh5n1")]
@@ -27,12 +28,11 @@ position = Vector2(0, -500)
 [node name="Player" parent="." instance=ExtResource("1_6wqyb")]
 position = Vector2(0, -35)
 
-[node name="PlayerCamera" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Player" groups=["Camera"]]
 offset = Vector2(240, -100)
 limit_left = -1
 limit_right = 1
-position_smoothing_enabled = true
-position_smoothing_speed = 15.0
+script = ExtResource("8_8ra66")
 
 [node name="StartingPlatform" parent="." instance=ExtResource("3_5d5kw")]
 position = Vector2(-10, 35)

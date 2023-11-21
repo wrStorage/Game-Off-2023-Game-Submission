@@ -32,7 +32,11 @@ func _process(_delta) -> void:
 	rock_spawner.global_position.y = player.global_position.y - screen_height
 
 func add_platform(platform_position, row) -> void:
-	var new_platform = platforms[rng.randi_range(0, platforms.size() - 1)].instantiate()
+	var new_platform
+	if row <= 30:
+		new_platform = platforms[rng.randi_range(0, platforms.size() - 2)].instantiate()
+	else:
+		new_platform = platforms[rng.randi_range(0, platforms.size() - 1)].instantiate()
 	var flip = rng.randi_range(0,1)
 	if flip:
 		new_platform.scale.x *= -flip

@@ -42,18 +42,18 @@ func _physics_process(delta) -> void:
 		apply_gravity(delta)
 	
 	if is_on_floor() or fall_buffer:
-		if Input.is_action_just_pressed("ui_up") or buffered_jump:
+		if Input.is_action_just_pressed("jump") or buffered_jump:
 			velocity.y = jump_speed
 			audio_player.play()
 			animation_player.play("jump")
 			fall_buffer = false
 			buffered_jump = false
 		
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("jump"):
 		buffered_jump = true
 		buffered_jump_timer.start()
 		
-	if Input.is_action_just_released("ui_up") and velocity.y < 0:
+	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y = 0
 	
 	velocity.x = direction * speed
