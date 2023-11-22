@@ -28,7 +28,6 @@ autostart = true
 
 [node name="BoulderSpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [connection signal="timeout" from="RockSpawnTimer" to="." method="_on_rock_spawn_timer_timeout"]
 [connection signal="timeout" from="BoulderSpawnTimer" to="." method="_on_boulder_spawn_timer_timeout"]

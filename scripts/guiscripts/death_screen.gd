@@ -25,3 +25,7 @@ func _on_visibility_changed() -> void:
 		run_score_label.text = "Run Score\n" + str(GameManager.current_run_score)
 		high_score_label.text = "High Score\n" + str(GameManager.high_score)
 		retry_button.grab_focus()
+
+func _on_button_focus_exited() -> void:
+	if visible:
+		SfxAudioPlayer.play_menu_scroll_sfx()

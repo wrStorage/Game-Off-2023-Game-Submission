@@ -23,6 +23,7 @@ func _input(event):
 
 func _ready() -> void:
 	generate_platforms()
+	get_tree().call_group("Camera", "shake_camera")
 
 func _process(_delta) -> void:
 	if player.global_position.y <= platform_generate_height:
@@ -34,7 +35,7 @@ func _process(_delta) -> void:
 func add_platform(platform_position, row) -> void:
 	var new_platform
 	if row <= 30:
-		new_platform = platforms[rng.randi_range(0, platforms.size() - 2)].instantiate()
+		new_platform = platforms[rng.randi_range(0, platforms.size() - 4)].instantiate()
 	else:
 		new_platform = platforms[rng.randi_range(0, platforms.size() - 1)].instantiate()
 	var flip = rng.randi_range(0,1)

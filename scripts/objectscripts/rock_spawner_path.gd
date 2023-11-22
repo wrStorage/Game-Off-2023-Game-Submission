@@ -26,5 +26,8 @@ func increase_difficulty() -> void:
 	if rock_timer.wait_time != rock_time_limit:
 		rock_timer.wait_time -= .25
 	
-	if boulder_timer.wait_time != boulder_time_limit:
-		boulder_timer.wait_time -= .25
+	if boulder_timer.is_stopped():
+		boulder_timer.start()
+	else:
+		if boulder_timer.wait_time != boulder_time_limit:
+			boulder_timer.wait_time -= .25

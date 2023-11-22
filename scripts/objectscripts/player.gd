@@ -4,7 +4,7 @@ var speed: int = 250
 var jump_speed: int = -550
 var normal_jump_speed: int = -550
 var upgrade_jump_speed: int = -700
-var gravity_limit: int = 500
+var gravity_limit: int = 650
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var fall_buffer: bool = false
 var buffered_jump: bool = false
@@ -28,6 +28,7 @@ var vertical_knockback_strength: float = -100
 func _physics_process(delta) -> void:
 	if impacting_ray.is_colliding() and is_on_floor() and !squished:
 		squished = true
+		SfxAudioPlayer.play_death_sfx()
 		DeathScreen.show()
 		get_tree().paused = true
 		
@@ -73,7 +74,7 @@ func _physics_process(delta) -> void:
 		fall_buffer_timer.start()
 	
 func apply_gravity(delta) -> void:
-	if position.y < gravity_limit:
+	if velocity.y < gravity_limit:
 		velocity.y += gravity * delta
 	
 func apply_stun() -> void:

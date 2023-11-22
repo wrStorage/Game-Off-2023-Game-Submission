@@ -90,5 +90,7 @@ layout_mode = 2
 text = "Main Menu"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="focus_exited" from="ScreenPanel/ButtonMarginContainer/ButtonVerticalContainer/RetryButton" to="." method="_on_button_focus_exited"]
 [connection signal="pressed" from="ScreenPanel/ButtonMarginContainer/ButtonVerticalContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="focus_exited" from="ScreenPanel/ButtonMarginContainer/ButtonVerticalContainer/MainMenuButton" to="." method="_on_button_focus_exited"]
 [connection signal="pressed" from="ScreenPanel/ButtonMarginContainer/ButtonVerticalContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

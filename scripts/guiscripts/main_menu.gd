@@ -12,3 +12,6 @@ func _ready() -> void:
 
 func _on_start_button_pressed() -> void:
 	GameManager.start_game()
+	
+func _on_button_focus_entered():
+	SfxAudioPlayer.play_menu_scroll_sfx()

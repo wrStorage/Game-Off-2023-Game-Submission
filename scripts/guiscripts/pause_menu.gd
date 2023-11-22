@@ -18,3 +18,6 @@ func _on_main_menu_button_pressed() -> void:
 	GameManager.reset_run_score()
 	GameManager.load_main_menu()
 	get_tree().paused = false
+
+func _on_button_focus_entered():
+	SfxAudioPlayer.play_menu_scroll_sfx()

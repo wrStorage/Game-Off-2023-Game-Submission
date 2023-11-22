@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed: int = 50
+@export var speed: int = 25
 @export var max_speed: int = 160
 @onready var speed_timer = $SpeedTimer
 var lava_time_limit = 1
@@ -17,6 +17,7 @@ func _on_body_entered(body) -> void:
 	if body.collision_layer == 1:
 		body.get_node("DespawnTimer").start()
 	elif body.collision_layer == 4:
+		SfxAudioPlayer.play_death_sfx()
 		DeathScreen.show()
 		get_tree().paused = true
 	elif body.collision_layer == 16:

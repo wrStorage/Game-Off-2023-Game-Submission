@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://tqrnx38dteyc"]
+
+[ext_resource type="Script" path="res://scripts/objectscripts/platform.gd" id="1_wughq"]
+[ext_resource type="Texture2D" uid="uid://bd8gnglghthb1" path="res://assets/sprites/objects/spr_plat64_2.png" id="2_4f57b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1ngt"]
+size = Vector2(64, 20)
+
+[node name="Platform64_2" type="StaticBody2D"]
+script = ExtResource("1_wughq")
+
+[node name="PlatformSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_4f57b")
+
+[node name="PlatformCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x1ngt")
+one_way_collision = true
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout" flags=18]
