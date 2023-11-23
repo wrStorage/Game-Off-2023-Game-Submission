@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfegfx2byl700"]
 
-[ext_resource type="Texture2D" uid="uid://bi6k73cjtb7ch" path="res://assets/sprites/objects/spr_floor_start.png" id="1_qjuc0"]
+[ext_resource type="Texture2D" uid="uid://c0at4p33bp0p3" path="res://assets/sprites/objects/spr_floor_start.png" id="1_qjuc0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cw4jg"]
 size = Vector2(485, 145)
@@ -13,5 +13,5 @@ position = Vector2(10.5, 0)
 texture = ExtResource("1_qjuc0")
 
 [node name="StartPlatformCollisionShape" type="CollisionShape2D" parent="."]
-position = Vector2(9, 0)
+position = Vector2(9, -150)
 shape = SubResource("RectangleShape2D_cw4jg")

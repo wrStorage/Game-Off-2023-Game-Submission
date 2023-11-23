@@ -1,9 +1,8 @@
 extends Area2D
 
-@export var speed: int = 25
+@export var speed: int = 20
 @export var max_speed: int = 160
-@onready var speed_timer = $SpeedTimer
-var lava_time_limit = 1
+@export var speed_increase: int = 20
 
 func _physics_process(delta) -> void:
 	position.y -= speed * delta
@@ -24,10 +23,6 @@ func _on_body_entered(body) -> void:
 		body.set_movement_to_zero()
 		body.despawn_timer.start()
 
-func _on_speed_timer_timeout() -> void:
-	if speed != max_speed:
-		speed += 5
-
 func increase_difficulty() -> void:
-	if speed_timer.wait_time != lava_time_limit:
-		speed_timer.wait_time -= 1
+	if speed != max_speed:
+		speed += speed_increase

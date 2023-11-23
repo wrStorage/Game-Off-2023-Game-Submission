@@ -16,7 +16,7 @@
 [ext_resource type="Script" path="res://scripts/utilityscripts/player_camera.gd" id="8_8ra66"]
 [ext_resource type="PackedScene" uid="uid://dw0slvscuuab7" path="res://scenes/objects/platform_32_2.tscn" id="9_t1asj"]
 [ext_resource type="PackedScene" uid="uid://d026s33ljk0d8" path="res://scenes/objects/platform_32_3.tscn" id="10_5rgkl"]
-[ext_resource type="Texture2D" uid="uid://civsplk4rwgf5" path="res://assets/sprites/background/bg.png" id="11_gf6n1"]
+[ext_resource type="Texture2D" uid="uid://6hxbkujde511" path="res://assets/sprites/background/bg.png" id="11_gf6n1"]
 [ext_resource type="Texture2D" uid="uid://dsgidtq2scoil" path="res://assets/sprites/background/spr_edge_left.png" id="12_r41n6"]
 [ext_resource type="Texture2D" uid="uid://1tpqarovdlj4" path="res://assets/sprites/background/spr_edge_right.png" id="13_2dotl"]
 [ext_resource type="PackedScene" uid="uid://ctm0e25fnf4fx" path="res://scenes/objects/platform_64.tscn" id="13_rnkvk"]
@@ -40,10 +40,10 @@ limit_right = 1
 script = ExtResource("8_8ra66")
 
 [node name="StartingPlatform" parent="." instance=ExtResource("3_5d5kw")]
-position = Vector2(-10, 35)
+position = Vector2(-10, 200)
 
 [node name="Lava" parent="." instance=ExtResource("5_4u7sq")]
-position = Vector2(8, 420)
+position = Vector2(8, 600)
 
 [node name="LeftInvisibleWall" parent="." instance=ExtResource("7_bir2g")]
 position = Vector2(-295, 0)

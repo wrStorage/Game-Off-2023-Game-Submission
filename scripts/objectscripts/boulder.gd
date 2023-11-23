@@ -5,6 +5,7 @@ extends RigidBody2D
 @onready var audio_player = $BoulderAudioPlayer
 var moveable: bool = true
 var horizontal_speed = 0
+var horizontal_force = 200
 var current_row = -1
 
 func _process(delta):
@@ -17,10 +18,10 @@ func _on_body_entered(body):
 	if body.collision_layer == 1 and body.platform_row != current_row:
 		audio_player.play()
 		if global_position. x >= body.global_position.x:
-			horizontal_speed = 200
+			horizontal_speed = horizontal_force
 			current_row = body.platform_row
 		else:
-			horizontal_speed = -200
+			horizontal_speed = -horizontal_force
 			current_row = body.platform_row
 
 func _on_despawn_timer_timeout():

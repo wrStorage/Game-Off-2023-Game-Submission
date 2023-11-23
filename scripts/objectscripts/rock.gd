@@ -8,6 +8,7 @@ extends Area2D
 @onready var bounce_timer = $Bounce_Timer
 @onready var despawn_timer = $Despawn_Timer
 @onready var audio_player = $RockAudioPlayer
+var default_vertical_speed: int = 350
 var overlapped: bool = false
 var rotation_amount: int = randi_range(min_rock_rotation, max_rock_rotation)
 var landed_position: int = 0
@@ -29,7 +30,7 @@ func _on_body_entered(body) -> void:
 			rotation_amount = randi_range(min_rock_rotation, max_rock_rotation)
 		else:
 			horizontal_speed = -horizontal_bounce
-			rotation_amount = -1 * randi_range(min_rock_rotation, max_rock_rotation)
+			rotation_amount = -randi_range(min_rock_rotation, max_rock_rotation)
 		vertical_speed = vertical_bounce
 		bounce_timer.start()
 		collision_mask = 12
@@ -40,11 +41,11 @@ func _on_body_entered(body) -> void:
 		queue_free()
 	
 	if body.collision_layer == 8:
-		horizontal_speed *= -1
-		rotation_amount *= -1
+		horizontal_speed = -horizontal_speed
+		rotation_amount = -rotation_amount
 
 func _on_bounce_timer_timeout() -> void:
-	vertical_speed = 350
+	vertical_speed = default_vertical_speed
 	
 func reset_speed():
 	vertical_speed = 0

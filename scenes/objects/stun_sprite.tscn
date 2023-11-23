@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b33pfavckxva6"]
 
-[ext_resource type="Texture2D" uid="uid://pdkdj2tqda2y" path="res://assets/sprites/player/spr_stun_15x12.png" id="1_rj7yl"]
+[ext_resource type="Texture2D" uid="uid://bdcherct4wji7" path="res://assets/sprites/player/spr_stun_15x12.png" id="1_rj7yl"]
 [ext_resource type="Script" path="res://scripts/objectscripts/stun_sprite.gd" id="2_do1qj"]
 
 [sub_resource type="Animation" id="Animation_cyh3p"]

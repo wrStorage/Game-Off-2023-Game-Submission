@@ -20,6 +20,7 @@ func _on_main_menu_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
+		GameManager.end_of_game = true
 		GameManager.stop_score_timer()
 		GameManager.check_scores()
 		run_score_label.text = "Run Score\n" + str(GameManager.current_run_score)

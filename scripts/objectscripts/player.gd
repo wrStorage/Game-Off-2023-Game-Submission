@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var speed: int = 250
+var default_speed: int = 250
 var jump_speed: int = -550
 var normal_jump_speed: int = -550
 var upgrade_jump_speed: int = -700
@@ -91,7 +92,7 @@ func apply_upgrade() -> void:
 	
 func _on_stun_timer_timeout() -> void:
 	jump_speed = normal_jump_speed
-	speed = 250
+	speed = default_speed
 	stun_timer.stop()
 	stun_sprite.visible = false
 

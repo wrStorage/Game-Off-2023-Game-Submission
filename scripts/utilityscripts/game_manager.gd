@@ -1,8 +1,9 @@
 extends Node
 
-var high_score = 0
-var previous_run_score = 0
-var current_run_score = 0
+var high_score: int = 0
+var previous_run_score: int = 0
+var current_run_score: int = 0
+var end_of_game: bool = false
 const main_menu_scene = preload("res://scenes/gui/main_menu.tscn")
 const level_scene = preload("res://scenes/levels/stage_one.tscn")
 @onready var score_timer = $ScoreTimer
