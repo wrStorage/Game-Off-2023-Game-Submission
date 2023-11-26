@@ -1,9 +1,9 @@
 extends Control
 
-const level_scene = preload("res://scenes/levels/stage_one.tscn")
-@onready var high_score_label = $ScorePanel/HighScoreLabel
-@onready var previous_score_label = $ScorePanel/PreviousScoreLabel
-@onready var start_button = $VerticalButtonContainer/StartButton
+const level_scene: PackedScene = preload("res://scenes/levels/stage_one.tscn")
+@onready var high_score_label: Label = $ScorePanel/HighScoreLabel
+@onready var previous_score_label: Label = $ScorePanel/PreviousScoreLabel
+@onready var start_button: Button = $VerticalButtonContainer/StartButton
 
 func _ready() -> void:
 	start_button.grab_focus()
@@ -13,5 +13,5 @@ func _ready() -> void:
 func _on_start_button_pressed() -> void:
 	GameManager.start_game()
 	
-func _on_button_focus_entered():
+func _on_button_focus_entered() -> void:
 	SfxAudioPlayer.play_menu_scroll_sfx()

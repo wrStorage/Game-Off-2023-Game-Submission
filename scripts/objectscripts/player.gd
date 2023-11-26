@@ -6,7 +6,7 @@ var jump_speed: int = -550
 var normal_jump_speed: int = -550
 var upgrade_jump_speed: int = -700
 var gravity_limit: int = 650
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var fall_buffer: bool = false
 var buffered_jump: bool = false
 var squished: bool = false
@@ -15,25 +15,26 @@ var horizontal_knockback_strength: float = -200
 var vertical_knockback_strength: float = -100
 @export var stun_speed: int = 100
 @export var stun_jump_speed: int = -400
-@onready var stun_timer = $StunTimer
-@onready var upgrade_timer = $UpgradeTimer
-@onready var fall_buffer_timer = $FallBufferTimer
-@onready var buffered_jump_timer = $BufferedJumpTimer
-@onready var knockback_timer = $Knockback_Timer
-@onready var impacting_ray = $PlayerCollisionShape/ImpactingObjectRay
-@onready var animation_player = $PlayerAnimationPlayer
-@onready var sprite = $PlayerCollisionShape
-@onready var stun_sprite = $PlayerCollisionShape/PlayerSprite/StunSprite
-@onready var audio_player = $PlayerAudioStream
+@onready var stun_timer: Timer = $StunTimer
+@onready var upgrade_timer: Timer = $UpgradeTimer
+@onready var fall_buffer_timer: Timer = $FallBufferTimer
+@onready var buffered_jump_timer: Timer = $BufferedJumpTimer
+@onready var knockback_timer: Timer = $Knockback_Timer
+@onready var impacting_ray: RayCast2D = $PlayerCollisionShape/ImpactingObjectRay
+@onready var animation_player: AnimationPlayer = $PlayerAnimationPlayer
+@onready var sprite: CollisionShape2D = $PlayerCollisionShape
+@onready var stun_sprite: Sprite2D = $PlayerCollisionShape/PlayerSprite/StunSprite
+@onready var audio_player: AudioStreamPlayer2D = $PlayerAudioStream
 
-func _physics_process(delta) -> void:
+func _ready():
+	EventBus.connect("player_hit_by_rock", apply_stun)
+
+func _physics_process(delta: float) -> void:
 	if impacting_ray.is_colliding() and is_on_floor() and !squished:
 		squished = true
-		SfxAudioPlayer.play_death_sfx()
-		DeathScreen.show()
-		get_tree().paused = true
+		EventBus.player_died.emit()
 		
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction: float = Input.get_axis("ui_left", "ui_right")
 	if is_on_floor() and direction == 0:
 		animation_player.play("RESET")
 		
@@ -63,7 +64,7 @@ func _physics_process(delta) -> void:
 	if direction != 0:
 		sprite.scale.x = direction
 		
-	var wasOnFloor = is_on_floor()
+	var wasOnFloor: bool = is_on_floor()
 	
 	if in_knockback:
 		velocity.y = vertical_knockback_strength
@@ -74,7 +75,7 @@ func _physics_process(delta) -> void:
 		fall_buffer = true
 		fall_buffer_timer.start()
 	
-func apply_gravity(delta) -> void:
+func apply_gravity(delta: float) -> void:
 	if velocity.y < gravity_limit:
 		velocity.y += gravity * delta
 	
@@ -106,6 +107,6 @@ func _on_upgrade_timer_timeout() -> void:
 	jump_speed = normal_jump_speed
 	upgrade_timer.stop()
 
-func _on_knockback_timer_timeout():
+func _on_knockback_timer_timeout() -> void:
 	in_knockback = false
 	knockback_timer.stop()

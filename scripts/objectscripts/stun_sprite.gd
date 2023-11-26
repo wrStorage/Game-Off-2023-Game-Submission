@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var animation_player = $StunAnimationPlayer
+@onready var animation_player: AnimationPlayer = $StunAnimationPlayer
 
 func _on_visibility_changed():
 	if visible:

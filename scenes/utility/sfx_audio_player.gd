@@ -1,8 +1,8 @@
 extends AudioStreamPlayer
 
-const menu_scroll = preload("res://assets/sfx/menu scroll.wav")
-const death_sfx = preload("res://assets/sfx/death.wav")
-const idol_sfx = preload("res://assets/sfx/idol.wav")
+const menu_scroll: AudioStreamWAV = preload("res://assets/sfx/menu scroll.wav")
+const death_sfx: AudioStreamWAV = preload("res://assets/sfx/death.wav")
+const idol_sfx: AudioStreamWAV = preload("res://assets/sfx/idol.wav")
 
 func play_menu_scroll_sfx() -> void:
 	stream = menu_scroll

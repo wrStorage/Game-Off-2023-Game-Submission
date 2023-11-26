@@ -1,17 +1,17 @@
 extends CanvasLayer
 
-@onready var resume_button = $PausePanel/ButtonMarginContainer/ButtonVerticalContainer/ResumeButton
+@onready var resume_button: Button = $PausePanel/ButtonMarginContainer/ButtonVerticalContainer/ResumeButton
 
-func _input(event):
-	if !GameManager.end_of_game:
-		if event.is_action_pressed("pause") and get_tree().paused == false:
-			show()
-			get_tree().paused = true
-		elif event.is_action_pressed("pause") and get_tree().paused == true:
-			hide()
-			get_tree().paused = false
+func _input(event: InputEvent):
+	if event.is_action_pressed("pause") and get_tree().paused == false:
+		show()
+		get_tree().paused = true
+	elif event.is_action_pressed("pause") and get_tree().paused == true:
+		hide()
+		get_tree().paused = false
 
 func _ready() -> void:
+	EventBus.connect("player_died", queue_free)
 	hide()
 
 func _on_resume_button_pressed() -> void:
@@ -24,7 +24,6 @@ func _on_visibility_changed() -> void:
 
 func _on_main_menu_button_pressed() -> void:
 	GameManager.stop_score_timer()
-	GameManager.reset_run_score()
 	GameManager.load_main_menu()
 	get_tree().paused = false
 

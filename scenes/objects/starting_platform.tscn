@@ -6,7 +6,7 @@
 size = Vector2(485, 145)
 
 [node name="StartingPlatform" type="StaticBody2D"]
-collision_layer = 17
+collision_layer = 64
 
 [node name="StartPlatformSprite" type="Sprite2D" parent="."]
 position = Vector2(10.5, 0)
