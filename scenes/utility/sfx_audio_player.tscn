@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://dw2uan6xvuhht"]
 
-[ext_resource type="Script" path="res://scenes/utility/sfx_audio_player.gd" id="1_2kwdh"]
+[ext_resource type="Script" path="res://scripts/utilityscripts/sfx_audio_player.gd" id="1_bmfhl"]
 
 [node name="SFXAudioPlayer" type="AudioStreamPlayer"]
 process_mode = 3
 bus = &"SFX"
-script = ExtResource("1_2kwdh")
+script = ExtResource("1_bmfhl")

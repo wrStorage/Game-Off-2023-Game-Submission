@@ -58,9 +58,9 @@ grow_vertical = 2
 layout_mode = 2
 text = "Start Game"
 
-[node name="VolumeButton" type="Button" parent="VerticalButtonContainer"]
+[node name="MuteButton" type="Button" parent="VerticalButtonContainer"]
 layout_mode = 2
-text = "Volume"
+text = "Mute"
 
 [node name="InstructionsButton" type="Button" parent="VerticalButtonContainer"]
 layout_mode = 2
@@ -88,6 +88,7 @@ text = "Game Off 2023
 
 [connection signal="focus_entered" from="VerticalButtonContainer/StartButton" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="VerticalButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="focus_entered" from="VerticalButtonContainer/VolumeButton" to="." method="_on_button_focus_entered"]
+[connection signal="focus_entered" from="VerticalButtonContainer/MuteButton" to="." method="_on_button_focus_entered"]
+[connection signal="pressed" from="VerticalButtonContainer/MuteButton" to="." method="_on_mute_button_pressed"]
 [connection signal="focus_entered" from="VerticalButtonContainer/InstructionsButton" to="." method="_on_button_focus_entered"]
 [connection signal="focus_entered" from="VerticalButtonContainer/CreditsButton" to="." method="_on_button_focus_entered"]

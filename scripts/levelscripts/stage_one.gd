@@ -14,8 +14,8 @@ var platform_generate_height: int = -640
 var prev_platform_choice: int = 0
 var idol_row: int = 30
 var easy_platform_limit: int = 30
-var platform_options: Array[int] = [-2, -1, 0, 1, 2]
 var platform_row_limit: int = 3
+const platform_choice_range: int = 2
 
 func _ready() -> void:
 	EventBus.connect("obstacle_spawned", launch_obstacle)
@@ -50,24 +50,24 @@ func generate_random_platforms(used_platforms: Array[int], platform_row: int) ->
 	var extra_platforms: bool = true
 	while extra_platforms:
 		if randf_range(0, 1) <= .4 and used_platforms.size() < platform_row_limit:
-			var platform_choice: int = randi_range(0, platform_options.size() - 1)
-			if platform_choice != prev_platform_choice and !used_platforms.has(platform_options[platform_choice]):
-				var new_position: Vector2 = Vector2(platform_options[platform_choice] * horizontal_offset, -vertical_offset * platform_row)
+			var platform_choice: int = randi_range(-platform_choice_range, platform_choice_range)
+			if platform_choice != prev_platform_choice and !used_platforms.has(platform_choice):
+				var new_position: Vector2 = Vector2(platform_choice * horizontal_offset, -vertical_offset * platform_row)
 				add_platform(new_position, platform_row)
-				used_platforms.append(platform_options[platform_choice])
+				used_platforms.append(platform_choice)
 		else:
 			extra_platforms = false
 
 func generate_platform_path(used_platforms: Array[int], platform_row: int) -> void:
 	var valid_choice: bool = false
 	while(!valid_choice):
-		var platform_choice: int = randi_range(0, platform_options.size() - 1)
+		var platform_choice: int = randi_range(-platform_choice_range, platform_choice_range)
 		if abs(prev_platform_choice - platform_choice) <= 2 and platform_choice != prev_platform_choice:
-			var new_position: Vector2 = Vector2(platform_options[platform_choice] * horizontal_offset, -vertical_offset * platform_row)
+			var new_position: Vector2 = Vector2(platform_choice * horizontal_offset, -vertical_offset * platform_row)
 			add_platform(new_position, platform_row)
 			if platform_row % idol_row == 0:
 				add_idol(new_position)
-			used_platforms.append(platform_options[platform_choice])
+			used_platforms.append(platform_choice)
 			valid_choice = true
 			prev_platform_choice = platform_choice
 

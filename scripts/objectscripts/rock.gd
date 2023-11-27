@@ -8,6 +8,7 @@ extends Area2D
 @onready var bounce_timer: Timer = $Bounce_Timer
 @onready var despawn_timer: Timer = $Despawn_Timer
 @onready var audio_player: AudioStreamPlayer2D = $RockAudioPlayer
+@onready var original_mask: int = collision_mask
 var default_vertical_speed: int = 350
 var lava_overlapped: bool = false
 var rotation_amount: int = randi_range(min_rock_rotation, max_rock_rotation)
@@ -17,7 +18,7 @@ var offset: float = 20.0
 
 func _physics_process(delta: float) -> void:
 	if global_position.y > landed_position:
-		collision_mask = 45
+		collision_mask = original_mask
 		
 	if lava_overlapped == true:
 		reset_speed()
@@ -37,7 +38,7 @@ func _on_body_entered(body: Node2D) -> void:
 			rotation_amount = -randi_range(min_rock_rotation, max_rock_rotation)
 		vertical_speed = vertical_bounce
 		bounce_timer.start()
-		collision_mask = 44
+		collision_mask -= Collision.PLATFORMS
 		landed_position = body.global_position.y + offset
 		
 	if body.collision_layer == Collision.PLAYER:

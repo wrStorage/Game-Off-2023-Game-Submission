@@ -27,6 +27,7 @@ wait_time = 1.5
 [node name="RockAudioPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_n8y16")
 max_distance = 640.0
+bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_rock_entered_lava"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
