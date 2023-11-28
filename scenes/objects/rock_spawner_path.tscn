@@ -23,11 +23,11 @@ position = Vector2(-220, 0)
 rotation = -0.00320512
 
 [node name="RockSpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4.0
 autostart = true
 
 [node name="BoulderSpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 6.0
 
 [connection signal="timeout" from="RockSpawnTimer" to="." method="_on_rock_spawn_timer_timeout"]
 [connection signal="timeout" from="BoulderSpawnTimer" to="." method="_on_boulder_spawn_timer_timeout"]

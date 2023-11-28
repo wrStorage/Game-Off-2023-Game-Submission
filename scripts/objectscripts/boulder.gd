@@ -5,24 +5,29 @@ extends RigidBody2D
 @onready var audio_player: AudioStreamPlayer2D = $BoulderAudioPlayer
 var moveable: bool = true
 var horizontal_speed: float = 0.0
-var horizontal_force: float = 200.0
-var current_row: int = -1
+var horizontal_force: float = 5000.0
+var landed_position: float = 0
+var offset: float = 20.0
+var new_row: bool = true
 
-func _process(delta: float):
+func _physics_process(delta: float):
 	if !moveable:
 		freeze = true
 	else:
-		apply_impulse(Vector2(horizontal_speed, vertical_speed) * delta)
+		apply_force(Vector2(horizontal_speed, vertical_speed) * delta)
+	
+	if position.y > landed_position:
+		new_row = true
 
 func _on_body_entered(body: Node2D):
-	if body.collision_layer == Collision.PLATFORMS and body.platform_row != current_row:
+	if body.collision_layer == Collision.PLATFORMS and new_row:
 		audio_player.play()
+		new_row = false
 		if global_position. x >= body.global_position.x:
 			horizontal_speed = horizontal_force
-			current_row = body.platform_row
 		else:
 			horizontal_speed = -horizontal_force
-			current_row = body.platform_row
+		landed_position = body.global_position.y + offset
 
 func _on_despawn_timer_timeout():
 	queue_free()

@@ -38,6 +38,9 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and direction == 0:
 		animation_player.play("RESET")
 		
+	if Input.is_action_just_pressed("ui_down") and is_on_floor():
+		position.y += 1
+		
 	if is_on_floor() and direction != 0:
 		animation_player.play("walk")
 	
@@ -69,6 +72,7 @@ func _physics_process(delta: float) -> void:
 	if in_knockback:
 		velocity.y = vertical_knockback_strength
 		velocity.x = horizontal_knockback_strength * sprite.scale.x
+		
 	move_and_slide()
 	
 	if wasOnFloor and !is_on_floor() and velocity.y >= 0:

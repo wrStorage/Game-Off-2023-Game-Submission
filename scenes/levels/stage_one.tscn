@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bls854cswedxh"]
+[gd_scene load_steps=22 format=3 uid="uid://bls854cswedxh"]
 
 [ext_resource type="PackedScene" uid="uid://dox4ifyfxt4bk" path="res://scenes/objects/player.tscn" id="1_6wqyb"]
 [ext_resource type="Script" path="res://scripts/levelscripts/stage_one.gd" id="1_swgrx"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://deqgi8fbntb7" path="res://scenes/objects/platform_96_2.tscn" id="5_aqew2"]
 [ext_resource type="PackedScene" uid="uid://bn8vye74uq0e2" path="res://scenes/gui/hud.tscn" id="6_beuet"]
 [ext_resource type="PackedScene" uid="uid://tqrnx38dteyc" path="res://scenes/objects/platform_64_2.tscn" id="6_g7wni"]
-[ext_resource type="PackedScene" uid="uid://uy8d8nmwjrar" path="res://scenes/objects/platform_64_3.tscn" id="7_4v8hi"]
 [ext_resource type="PackedScene" uid="uid://c3tpinwwp4wv" path="res://scenes/objects/invisible_wall.tscn" id="7_bir2g"]
 [ext_resource type="Script" path="res://scripts/utilityscripts/player_camera.gd" id="8_8ra66"]
 [ext_resource type="PackedScene" uid="uid://dw0slvscuuab7" path="res://scenes/objects/platform_32_2.tscn" id="9_t1asj"]
@@ -25,7 +24,7 @@
 
 [node name="StageOne" type="Node2D"]
 script = ExtResource("1_swgrx")
-platforms = Array[PackedScene]([ExtResource("2_xlfe3"), ExtResource("5_aqew2"), ExtResource("4_88vuo"), ExtResource("13_rnkvk"), ExtResource("6_g7wni"), ExtResource("7_4v8hi"), ExtResource("5_26223"), ExtResource("9_t1asj"), ExtResource("10_5rgkl")])
+platform_scenes = Array[PackedScene]([ExtResource("2_xlfe3"), ExtResource("5_aqew2"), ExtResource("4_88vuo"), ExtResource("13_rnkvk"), ExtResource("6_g7wni"), ExtResource("13_rnkvk"), ExtResource("10_5rgkl"), ExtResource("9_t1asj"), ExtResource("5_26223")])
 metadata/_edit_vertical_guides_ = []
 
 [node name="RockSpawnerPath" parent="." instance=ExtResource("2_oh5n1")]

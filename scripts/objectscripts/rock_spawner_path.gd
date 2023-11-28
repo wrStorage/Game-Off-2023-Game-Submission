@@ -6,9 +6,9 @@ extends Path2D
 @onready var rock_timer: Timer = $RockSpawnTimer
 @onready var boulder_timer: Timer = $BoulderSpawnTimer
 var rock_time_limit: float = 1.0
-var boulder_time_limit: float = 2.0
-var rock_time_decrement: float = .25
-var boulder_time_decrement: float = .25
+var boulder_time_limit: float = 1.0
+var rock_time_decrement: float = 0.5
+var boulder_time_decrement: float = 0.5
 
 func _on_rock_spawn_timer_timeout() -> void:
 	var new_rock: Area2D = rock_scenes[randi_range(0, rock_scenes.size() - 1)].instantiate()

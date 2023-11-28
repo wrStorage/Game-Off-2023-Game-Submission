@@ -29,20 +29,18 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	audio_player.play()
+	var rock_direction: int = 1
 	if body.collision_layer == Collision.PLATFORMS:
 		if global_position.x >= body.global_position.x:
-			horizontal_speed = horizontal_bounce
-			rotation_amount = randi_range(min_rock_rotation, max_rock_rotation)
+			trigger_rock_bounce(rock_direction)
 		else:
-			horizontal_speed = -horizontal_bounce
-			rotation_amount = -randi_range(min_rock_rotation, max_rock_rotation)
-		vertical_speed = vertical_bounce
-		bounce_timer.start()
+			trigger_rock_bounce(-rock_direction)
 		collision_mask -= Collision.PLATFORMS
 		landed_position = body.global_position.y + offset
 		
 	if body.collision_layer == Collision.PLAYER:
 		EventBus.player_hit_by_rock.emit()
+		SfxAudioPlayer.play_rock_sfx()
 		queue_free()
 	
 	if body.collision_layer == Collision.WALL:
@@ -51,11 +49,6 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_bounce_timer_timeout() -> void:
 	vertical_speed = default_vertical_speed
-	
-func reset_speed() -> void:
-	vertical_speed = 0
-	horizontal_speed = 0
-	rotation_amount = 0
 
 func _on_despawn_timer_timeout() -> void:
 	queue_free()
@@ -63,3 +56,14 @@ func _on_despawn_timer_timeout() -> void:
 func _on_rock_entered_lava(_area) -> void:
 	lava_overlapped = true
 	despawn_timer.start()
+
+func reset_speed() -> void:
+	vertical_speed = 0
+	horizontal_speed = 0
+	rotation_amount = 0
+
+func trigger_rock_bounce(direction: int) -> void:
+	horizontal_speed = horizontal_bounce * direction
+	rotation_amount = randi_range(min_rock_rotation, max_rock_rotation) * direction
+	vertical_speed = vertical_bounce
+	bounce_timer.start()
