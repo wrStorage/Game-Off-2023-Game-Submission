@@ -2,8 +2,9 @@ extends Node2D
 
 @export var platform_scenes: Array[PackedScene] = []
 @export var easy_platform_limit: int = 30
+@export var easy_medium_platform_limit: int = 100
 @export var medium_platform_limit: int = 200
-@export var expert_platform_limit: int = 400
+@export var medium_expert_platform_limit: int = 350
 @onready var idol_scene: PackedScene = preload("res://scenes/objects/idol.tscn")
 @onready var rock_spawner: Path2D = $RockSpawnerPath
 @onready var player: CharacterBody2D = $Player
@@ -34,12 +35,14 @@ func _process(_delta: float) -> void:
 
 func create_platform(row: int) -> StaticBody2D:
 	if row <= easy_platform_limit:
+		return platform_scenes[randi_range(0, platform_scenes.size() - 7)].instantiate()
+	elif row <= easy_medium_platform_limit:
 		return platform_scenes[randi_range(0, platform_scenes.size() - 4)].instantiate()
-	elif row >= expert_platform_limit:
-		return platform_scenes[randi_range(6, platform_scenes.size() - 1)].instantiate()
-	elif row >= medium_platform_limit:
+	elif row <= medium_platform_limit:
+		return platform_scenes[randi_range(0, platform_scenes.size() - 1)].instantiate()
+	elif row <= medium_expert_platform_limit:
 		return platform_scenes[randi_range(3, platform_scenes.size() - 1)].instantiate()
-	return platform_scenes[randi_range(0, platform_scenes.size() - 1)].instantiate()
+	return platform_scenes[randi_range(6, platform_scenes.size() - 1)].instantiate()
 	
 func flip_platform(platform: StaticBody2D, direction: float) -> void:
 	platform.scale.x *= direction
