@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://caidgm4d88qyr"]
+[gd_scene load_steps=5 format=3 uid="uid://caidgm4d88qyr"]
 
 [ext_resource type="Script" path="res://scripts/guiscripts/pause_menu.gd" id="1_rxlo3"]
+[ext_resource type="Theme" uid="uid://chrmqqoajoemb" path="res://assets/misc/main.tres" id="2_0ih0s"]
+[ext_resource type="Script" path="res://scripts/guiscripts/mutebutton.gd" id="2_tmniw"]
+[ext_resource type="Script" path="res://scripts/guiscripts/mainmenubutton.gd" id="3_jtk2r"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -13,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_0ih0s")
 
 [node name="ButtonMarginContainer" type="MarginContainer" parent="PausePanel"]
 layout_mode = 1
@@ -39,12 +43,20 @@ text = "Game Paused"
 layout_mode = 2
 text = "Resume"
 
+[node name="MuteButton" type="Button" parent="PausePanel/ButtonMarginContainer/ButtonVerticalContainer"]
+layout_mode = 2
+text = "Mute"
+script = ExtResource("2_tmniw")
+
 [node name="MainMenuButton" type="Button" parent="PausePanel/ButtonMarginContainer/ButtonVerticalContainer"]
 layout_mode = 2
 text = "Main Menu"
+script = ExtResource("3_jtk2r")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="focus_entered" from="PausePanel/ButtonMarginContainer/ButtonVerticalContainer/ResumeButton" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="PausePanel/ButtonMarginContainer/ButtonVerticalContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="focus_entered" from="PausePanel/ButtonMarginContainer/ButtonVerticalContainer/MuteButton" to="." method="_on_button_focus_entered"]
+[connection signal="pressed" from="PausePanel/ButtonMarginContainer/ButtonVerticalContainer/MuteButton" to="PausePanel/ButtonMarginContainer/ButtonVerticalContainer/MuteButton" method="_on_pressed"]
 [connection signal="focus_entered" from="PausePanel/ButtonMarginContainer/ButtonVerticalContainer/MainMenuButton" to="." method="_on_button_focus_entered"]
-[connection signal="pressed" from="PausePanel/ButtonMarginContainer/ButtonVerticalContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="PausePanel/ButtonMarginContainer/ButtonVerticalContainer/MainMenuButton" to="PausePanel/ButtonMarginContainer/ButtonVerticalContainer/MainMenuButton" method="_on_pressed"]

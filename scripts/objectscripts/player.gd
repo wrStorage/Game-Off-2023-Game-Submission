@@ -24,7 +24,7 @@ var vertical_knockback_strength: float = -100
 @onready var animation_player: AnimationPlayer = $PlayerAnimationPlayer
 @onready var sprite: CollisionShape2D = $PlayerCollisionShape
 @onready var stun_sprite: Sprite2D = $PlayerCollisionShape/PlayerSprite/StunSprite
-@onready var audio_player: AudioStreamPlayer2D = $PlayerAudioStream
+@onready var audio_player: AudioStreamPlayer = $PlayerAudioStream
 
 func _ready():
 	EventBus.connect("player_hit_by_rock", apply_stun)

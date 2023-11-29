@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-@onready var retry_button: Button = $ScreenPanel/ButtonMarginContainer/ButtonVerticalContainer/RetryButton
-@onready var run_score_label: Label = $ScreenPanel/ScoreMarginContainer/ScoreHorizontalContainer/RunScoreLabel
-@onready var high_score_label: Label = $ScreenPanel/ScoreMarginContainer/ScoreHorizontalContainer/HighScoreLabel
+@onready var retry_button: Button = $ScreenOverlay/ButtonMarginContainer/ButtonVerticalContainer/RetryButton
+@onready var run_score_label: Label = $ScreenOverlay/ScoreMarginContainer/ScoreHorizontalContainer/RunScoreLabel
+@onready var high_score_label: Label = $ScreenOverlay/ScoreMarginContainer/ScoreHorizontalContainer/HighScoreLabel
 
 func _ready() -> void:
 	EventBus.connect("player_died", show_death_screen)
@@ -13,16 +13,11 @@ func _on_retry_button_pressed() -> void:
 	get_tree().paused = false
 	hide()
 
-func _on_main_menu_button_pressed() -> void:
-	GameManager.load_main_menu()
-	get_tree().paused = false
-	hide()
-
 func _on_visibility_changed() -> void:
 	if visible:
 		GameManager.stop_score_timer()
 		GameManager.check_scores()
-		run_score_label.text = "Run Score\n" + str(GameManager.current_run_score)
+		run_score_label.text = "Score\n" + str(GameManager.current_run_score)
 		high_score_label.text = "High Score\n" + str(GameManager.high_score)
 		retry_button.grab_focus()
 

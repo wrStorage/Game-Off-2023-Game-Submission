@@ -106,7 +106,7 @@ libraries = {
 "": SubResource("AnimationLibrary_vfjpm")
 }
 
-[node name="PlayerAudioStream" type="AudioStreamPlayer2D" parent="."]
+[node name="PlayerAudioStream" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0y41r")
 bus = &"SFX"
 

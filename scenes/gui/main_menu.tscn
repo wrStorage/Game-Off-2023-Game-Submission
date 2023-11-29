@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkeq26h0kehkm"]
+[gd_scene load_steps=7 format=3 uid="uid://dkeq26h0kehkm"]
 
+[ext_resource type="Theme" uid="uid://chrmqqoajoemb" path="res://assets/misc/main.tres" id="1_5ugfj"]
 [ext_resource type="Script" path="res://scripts/guiscripts/main_menu.gd" id="1_k1r4g"]
-[ext_resource type="Texture2D" uid="uid://dopg4o2kqw3ee" path="res://assets/title.png" id="2_i5w13"]
+[ext_resource type="Texture2D" uid="uid://trhk5e8e7l7x" path="res://assets/overlays/title.png" id="2_gsprr"]
+[ext_resource type="Script" path="res://scripts/guiscripts/mutebutton.gd" id="3_qm8bt"]
+[ext_resource type="Theme" uid="uid://b5pypaoqpth50" path="res://assets/misc/score.tres" id="4_hpkbh"]
+[ext_resource type="PackedScene" uid="uid://cxpdj38s1lj8" path="res://scenes/gui/how_to_play_screen.tscn" id="4_q1fd2"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -10,35 +14,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_5ugfj")
 script = ExtResource("1_k1r4g")
 
 [node name="TitleImage" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 480.0
 offset_bottom = 640.0
-texture = ExtResource("2_i5w13")
+texture = ExtResource("2_gsprr")
 
 [node name="ScorePanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 30.0
 grow_horizontal = 2
-
-[node name="HighScoreLabel" type="Label" parent="ScorePanel"]
-layout_mode = 0
-offset_right = 101.0
-offset_bottom = 26.0
-text = "High Score: 0"
+theme = ExtResource("4_hpkbh")
 
 [node name="PreviousScoreLabel" type="Label" parent="ScorePanel"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 137.0
+offset_bottom = 31.0
+text = "Previous Score: 0"
+
+[node name="HighScoreLabel" type="Label" parent="ScorePanel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -132.0
-offset_bottom = 26.0
+offset_left = -106.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 31.0
 grow_horizontal = 0
-text = "Last Run Score: 0"
+text = "High Score: 0"
+
+[node name="JamMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -40.0
+offset_right = 130.0
+grow_vertical = 0
+
+[node name="JamLabel" type="Label" parent="JamMarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
+text = "Version 1.0 (Game Off 2023) 
+© 2023 [Name]"
 
 [node name="VerticalButtonContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -61,6 +89,7 @@ text = "Start Game"
 [node name="MuteButton" type="Button" parent="VerticalButtonContainer"]
 layout_mode = 2
 text = "Mute"
+script = ExtResource("3_qm8bt")
 
 [node name="InstructionsButton" type="Button" parent="VerticalButtonContainer"]
 layout_mode = 2
@@ -70,25 +99,13 @@ text = "How to Play"
 layout_mode = 2
 text = "Credits"
 
-[node name="JamMarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -60.0
-offset_right = 135.0
-offset_bottom = -20.0
-grow_vertical = 0
+[node name="HowToPlayScreen" parent="." instance=ExtResource("4_q1fd2")]
 
-[node name="JamLabel" type="Label" parent="JamMarginContainer"]
-layout_mode = 2
-text = "Game Off 2023
-"
-
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_entered" from="VerticalButtonContainer/StartButton" to="." method="_on_button_focus_entered"]
 [connection signal="pressed" from="VerticalButtonContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="focus_entered" from="VerticalButtonContainer/MuteButton" to="." method="_on_button_focus_entered"]
-[connection signal="pressed" from="VerticalButtonContainer/MuteButton" to="." method="_on_mute_button_pressed"]
+[connection signal="pressed" from="VerticalButtonContainer/MuteButton" to="VerticalButtonContainer/MuteButton" method="_on_pressed"]
 [connection signal="focus_entered" from="VerticalButtonContainer/InstructionsButton" to="." method="_on_button_focus_entered"]
+[connection signal="pressed" from="VerticalButtonContainer/InstructionsButton" to="." method="_on_instructions_button_pressed"]
 [connection signal="focus_entered" from="VerticalButtonContainer/CreditsButton" to="." method="_on_button_focus_entered"]

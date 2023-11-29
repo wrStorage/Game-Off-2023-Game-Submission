@@ -10,7 +10,7 @@ var landed_position: float = 0
 var offset: float = 20.0
 var new_row: bool = true
 
-func _physics_process(delta: float):
+func _physics_process(delta: float) -> void:
 	if !moveable:
 		freeze = true
 	else:
@@ -19,7 +19,7 @@ func _physics_process(delta: float):
 	if position.y > landed_position:
 		new_row = true
 
-func _on_body_entered(body: Node2D):
+func _on_body_entered(body: Node2D) -> void:
 	if body.collision_layer == Collision.PLATFORMS and new_row:
 		audio_player.play()
 		new_row = false
@@ -29,8 +29,8 @@ func _on_body_entered(body: Node2D):
 			horizontal_speed = -horizontal_force
 		landed_position = body.global_position.y + offset
 
-func _on_despawn_timer_timeout():
+func _on_despawn_timer_timeout() -> void:
 	queue_free()
 
-func set_movement_to_zero():
+func set_movement_to_zero() -> void:
 	moveable = false

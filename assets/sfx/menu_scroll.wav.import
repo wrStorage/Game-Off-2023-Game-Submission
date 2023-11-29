@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bcmmx6jcu47a8"
-path="res://.godot/imported/menu scroll.wav-56efe93e447b50661a54547116cce193.sample"
+path="res://.godot/imported/menu_scroll.wav-8951488d549db2bdbb878fd3d44482ab.sample"
 
 [deps]
 
-source_file="res://assets/sfx/menu scroll.wav"
-dest_files=["res://.godot/imported/menu scroll.wav-56efe93e447b50661a54547116cce193.sample"]
+source_file="res://assets/sfx/menu_scroll.wav"
+dest_files=["res://.godot/imported/menu_scroll.wav-8951488d549db2bdbb878fd3d44482ab.sample"]
 
 [params]
 

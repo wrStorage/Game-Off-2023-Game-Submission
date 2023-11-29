@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 	previous_shake_offset = shake_offset
 
 func shake_camera() -> void:
+	SfxAudioPlayer.play_rumble_sfx()
 	shake_strength = randomStrength
 	
 func get_an_offset() -> Vector2:
