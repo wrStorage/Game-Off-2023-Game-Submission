@@ -6,3 +6,5 @@
 process_mode = 3
 bus = &"SFX"
 script = ExtResource("1_bmfhl")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

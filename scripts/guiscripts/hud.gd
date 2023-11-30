@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var score_label: Label = $MarginContainer/HBoxContainer/ScoreNumberLabel
+@onready var score_label: Label = $ScorePanel/MarginContainer/HBoxContainer/ScoreNumberLabel
 
 func _ready():
 	EventBus.connect("score_changed", adjust_score_label)

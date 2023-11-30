@@ -14,7 +14,7 @@ config/name="Whole_Lava_Trouble"
 run/main_scene="res://scenes/gui/main_menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 boot_splash/show_image=false
-config/icon="res://assets/sprites/objects/spr_idol.png"
+config/icon="res://assets/icons/ico256.png"
 
 [audio]
 

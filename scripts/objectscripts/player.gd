@@ -94,7 +94,7 @@ func apply_stun() -> void:
 func apply_upgrade() -> void:
 	jump_speed = upgrade_jump_speed
 	upgrade_timer.start()
-	
+
 func _on_stun_timer_timeout() -> void:
 	jump_speed = normal_jump_speed
 	speed = default_speed
@@ -114,3 +114,6 @@ func _on_upgrade_timer_timeout() -> void:
 func _on_knockback_timer_timeout() -> void:
 	in_knockback = false
 	knockback_timer.stop()
+
+func _on_stuck_area_body_entered(_body: Node2D) -> void:
+	EventBus.player_died.emit()

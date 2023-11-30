@@ -48,8 +48,9 @@ horizontal_alignment = 1
 [node name="FlavorTextLabel" type="Label" parent="ScreenOverlay/GameOverMarginContainer/GameOverVerticalContainer"]
 layout_mode = 2
 text = "[Flavor Text]"
+horizontal_alignment = 1
 script = ExtResource("2_eb10q")
-flavor_text = Array[String](["Bold Move.", "Better luck next time.", "Might as well try again.", "There is no escape by the way.", "You can always lie about your score.", "Give it another go.", "This volcano goes on forever!", "At least playing is free.", "Rumors of your demise were accurate.", "Goodbye cruel world!", "Why is he down there anyway?", "You can jump through platforms.", "Blocked by a boulder, I bet.", "Knocked by a rock?", "The sun was in your eyes.", "A dog ate your score."])
+flavor_text = Array[String](["Bold Move.", "Better luck next time.", "Oh no!", "There is no leaving the volcano.", "Try again.", "Give it another try.", "This volcano is endless!", "At least it's free to play.", "There is always a path up.", "Goodbye cruel world!", "Why is he down there anyway?", "Pro-tip: Don't fall.", "Blocked? Descend to get rid of boulders.", "The idol lets you jump up two rows at a time.", "The sun was in my eyes", "A dog ate my score.", "Thank you for playing!"])
 
 [node name="ScoreMarginContainer" type="MarginContainer" parent="ScreenOverlay"]
 layout_mode = 1

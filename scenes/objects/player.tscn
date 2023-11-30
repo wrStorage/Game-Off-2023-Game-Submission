@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dox4ifyfxt4bk"]
+[gd_scene load_steps=11 format=3 uid="uid://dox4ifyfxt4bk"]
 
 [ext_resource type="Script" path="res://scripts/objectscripts/player.gd" id="1_67d6m"]
 [ext_resource type="Texture2D" uid="uid://drgjk32m8yu6y" path="res://assets/sprites/player/spr_pc_43x53.png" id="2_xsti4"]
@@ -62,6 +62,9 @@ _data = {
 "walk": SubResource("Animation_j1m65")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75mx0"]
+size = Vector2(5, 20)
+
 [node name="Player" type="CharacterBody2D"]
 top_level = true
 collision_layer = 4
@@ -108,10 +111,20 @@ libraries = {
 
 [node name="PlayerAudioStream" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0y41r")
+volume_db = -6.0
 bus = &"SFX"
+
+[node name="StuckArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="StuckCollision" type="CollisionShape2D" parent="StuckArea"]
+position = Vector2(2, -5)
+shape = SubResource("RectangleShape2D_75mx0")
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="timeout" from="FallBufferTimer" to="." method="_on_fall_buffer_timer_timeout"]
 [connection signal="timeout" from="BufferedJumpTimer" to="." method="_on_buffered_jump_timer_timeout"]
 [connection signal="timeout" from="UpgradeTimer" to="." method="_on_upgrade_timer_timeout"]
 [connection signal="timeout" from="Knockback_Timer" to="." method="_on_knockback_timer_timeout"]
+[connection signal="body_entered" from="StuckArea" to="." method="_on_stuck_area_body_entered"]

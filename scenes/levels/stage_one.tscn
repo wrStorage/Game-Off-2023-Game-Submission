@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bls854cswedxh"]
+[gd_scene load_steps=23 format=3 uid="uid://bls854cswedxh"]
 
 [ext_resource type="PackedScene" uid="uid://dox4ifyfxt4bk" path="res://scenes/objects/player.tscn" id="1_6wqyb"]
 [ext_resource type="Script" path="res://scripts/levelscripts/stage_one.gd" id="1_swgrx"]
@@ -16,8 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://dw0slvscuuab7" path="res://scenes/objects/platform_32_2.tscn" id="9_t1asj"]
 [ext_resource type="PackedScene" uid="uid://d026s33ljk0d8" path="res://scenes/objects/platform_32_3.tscn" id="10_5rgkl"]
 [ext_resource type="Texture2D" uid="uid://6hxbkujde511" path="res://assets/sprites/background/bg.png" id="11_gf6n1"]
-[ext_resource type="Texture2D" uid="uid://dsgidtq2scoil" path="res://assets/sprites/background/spr_edge_left.png" id="12_r41n6"]
-[ext_resource type="Texture2D" uid="uid://1tpqarovdlj4" path="res://assets/sprites/background/spr_edge_right.png" id="13_2dotl"]
+[ext_resource type="Texture2D" uid="uid://d4ehtkjx6r1v3" path="res://assets/sprites/background/spr_edge_left.png" id="12_r41n6"]
+[ext_resource type="Texture2D" uid="uid://dn3f71oktu4ig" path="res://assets/sprites/background/spr_edge_right.png" id="13_2dotl"]
+[ext_resource type="AudioStream" uid="uid://j5obvafcklje" path="res://assets/sfx/rumble_screen_v1.wav" id="13_juykh"]
 [ext_resource type="PackedScene" uid="uid://ctm0e25fnf4fx" path="res://scenes/objects/platform_64.tscn" id="13_rnkvk"]
 [ext_resource type="PackedScene" uid="uid://caidgm4d88qyr" path="res://scenes/gui/pause_menu.tscn" id="15_36v8r"]
 [ext_resource type="PackedScene" uid="uid://8xxgkjhivle6" path="res://scenes/gui/death_screen.tscn" id="19_7rb1d"]
@@ -39,11 +40,16 @@ limit_left = -1
 limit_right = 1
 script = ExtResource("8_8ra66")
 
+[node name="ShakePlayer" type="AudioStreamPlayer" parent="Player/Camera2D"]
+stream = ExtResource("13_juykh")
+volume_db = 4.0
+bus = &"SFX"
+
 [node name="StartingPlatform" parent="." instance=ExtResource("3_5d5kw")]
 position = Vector2(-10, 200)
 
 [node name="Lava" parent="." instance=ExtResource("5_4u7sq")]
-position = Vector2(8, 600)
+position = Vector2(8, 500)
 
 [node name="LeftInvisibleWall" parent="." instance=ExtResource("7_bir2g")]
 position = Vector2(-295, 0)
