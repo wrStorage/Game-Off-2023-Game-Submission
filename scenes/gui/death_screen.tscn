@@ -50,7 +50,7 @@ layout_mode = 2
 text = "[Flavor Text]"
 horizontal_alignment = 1
 script = ExtResource("2_eb10q")
-flavor_text = Array[String](["Bold Move.", "Better luck next time.", "Oh no!", "There is no leaving the volcano.", "Try again.", "Give it another try.", "This volcano is endless!", "At least it's free to play.", "There is always a path up.", "Goodbye cruel world!", "Why is he down there anyway?", "Pro-tip: Don't fall.", "Blocked? Descend to get rid of boulders.", "The idol lets you jump up two rows at a time.", "The sun was in my eyes", "A dog ate my score.", "Thank you for playing!"])
+flavor_text = Array[String](["Bold Move.", "Better luck next time.", "Oh no!", "There is no leaving the volcano.", "Try again.", "Give it another try.", "This volcano is endless!", "At least it's free to play.", "There is always a path up.", "Goodbye cruel world!", "Why is he down there anyway?", "Pro-tip: Don't fall.", "Blocked? Descend to get rid of boulders.", "The idol lets you jump up two rows at a time.", "The sun was in my eyes.", "A dog ate my score.", "Thank you for playing!"])
 
 [node name="ScoreMarginContainer" type="MarginContainer" parent="ScreenOverlay"]
 layout_mode = 1
